@@ -36,19 +36,19 @@ module.exports = function () {
         if (table.hashes()[0].Failed === '0') {
             var res = /.*Executed (\d+) of 1 \(skipped (\d+)\) SUCCESS \(\d+(?:.\d+)? secs \/ \d+(?:.\d+)? sec(?:s)?\)\s*$/g.exec(world.karmaOutput);
             should.exist(res);
-            should.exists(res[1]);
+            should.exist(res[1]);
             res[1].should.equal(table.hashes()[0].Passed);
-            should.exists(res[2]);
+            should.exist(res[2]);
             res[2].should.equal(table.hashes()[0].Skipped);
         }
         else {
             var res = /.*Executed (\d+) of 1 \((\d+) FAILED\) \(skipped (\d+)\) \(\d+(?:.\d+)? secs \/ \d+(?:.\d+)? sec(?:s)?\)\s*$/g.exec(world.karmaOutput);
             should.exist(res);
-            should.exists(res[1]);
+            should.exist(res[1]);
             Number(res[1]).should.equal(Number(table.hashes()[0].Passed) + Number(table.hashes()[0].Failed));
-            should.exists(res[2]);
+            should.exist(res[2]);
             res[2].should.equal(table.hashes()[0].Failed);
-            should.exists(res[3]);
+            should.exist(res[3]);
             res[3].should.equal(table.hashes()[0].Skipped);
         }
     });
