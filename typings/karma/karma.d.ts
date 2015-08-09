@@ -1,0 +1,21 @@
+declare module karma {
+    export interface IKarmaResult {
+        id: string;
+        description: string;
+        log: string[];
+        suite: string[];
+        success: boolean;
+        skipped: boolean;
+        time: number;
+    }
+
+    export interface IKarma {
+        start: () => void;
+        files: { [file: string]: string; };
+        info(info: { total: number; }): void;
+        complete(info: { coverage: any }): void;
+        result(info: IKarmaResult): void;
+    }
+}
+
+declare var __karma__: karma.IKarma;

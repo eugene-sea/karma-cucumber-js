@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "out": "test_features/steps.js"
+    },
+    "files": [
+        "steps.ts"
+    ]
+}

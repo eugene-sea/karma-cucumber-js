@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "out": "src/adapter.js"
+    },
+    "files": [
+        "adapter.ts",
+        "cucumber-html-listener.ts",
+        "cucumber-karma-listener.ts"
+    ]
+}
