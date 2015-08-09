@@ -9,6 +9,10 @@
     "update-components": "npm update && tsd update",
     "updates": "npm outdated"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugene-sea/karma-cucumber-js.git"
+  },
   "keywords": [
     "karma-plugin",
     "karma-framework",
