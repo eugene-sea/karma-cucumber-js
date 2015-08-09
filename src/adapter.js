@@ -133,9 +133,11 @@ var karma;
             return function () {
                 var featuresUrls = Object.keys(_this.karma.files).filter(function (f) { return /\.feature$/.test(f); });
                 console.log("Found features: " + featuresUrls.join(', '));
+                var tags = CucumberAdapter.getTags(_this.karma.config.args);
+                console.log("Tags: " + tags.join(', '));
                 var features = CucumberAdapter.loadFeatures(featuresUrls);
                 var cucumberReporterNode = CucumberAdapter.createCucumberReporterNode();
-                _this.runFeatures(features, cucumberReporterNode);
+                _this.runFeatures(features, tags, cucumberReporterNode);
             };
         };
         CucumberAdapter.prototype.addStepDefinitions = function (callback) {
@@ -157,13 +159,21 @@ var karma;
             document.body.appendChild(cucumberReporterNode);
             return cucumberReporterNode;
         };
-        CucumberAdapter.prototype.runFeatures = function (features, rootElement) {
+        CucumberAdapter.getTags = function (args) {
+            var tagsIndex = args.indexOf('--tags');
+            if (tagsIndex < 0) {
+                return [];
+            }
+            var lastTagsIndex = args.indexOf('--', tagsIndex + 1);
+            return args.slice(tagsIndex + 1, lastTagsIndex < 0 ? args.length : lastTagsIndex).filter(function (s) { return !!s; });
+        };
+        CucumberAdapter.prototype.runFeatures = function (features, tags, rootElement) {
             var _this = this;
             var self = this;
             var cucumberInstance = new Cucumber(features, function () {
                 var scenario = this; // Supplied by Cucumber
                 self.stepDefinitionsCallbacks.forEach(function (c) { return c(scenario); });
-            });
+            }, { tags: tags });
             cucumberInstance.attachListener(new cucumber.CucumberHTMLListener(rootElement));
             cucumberInstance.attachListener(new cucumber.CucumberKarmaListener(this.karma));
             // cucumberInstance.start(() => { });

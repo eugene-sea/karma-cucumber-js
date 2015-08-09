@@ -81,7 +81,9 @@ declare module cucumber {
     }
 }
 
-declare var Cucumber: { new (features: [string, string][], stepDefinitions: () => void): cucumber.ICucumber; };
+declare var Cucumber: {
+    new (features: [string, string][], stepDefinitions: () => void, options?: { tags: string[]; }): cucumber.ICucumber;
+};
 declare var CucumberHTML: { DOMFormatter: { new (rootElement: HTMLElement): cucumber.IDOMFormatter; } };
 
 declare var __adapter__: cucumber.IKarmaCucumberAdapter;

@@ -14,11 +14,13 @@ module karma {
         getStart(): () => void {
             return () => {
                 let featuresUrls = Object.keys(this.karma.files).filter(f => /\.feature$/.test(f));
-                console.log(`Found features: ${featuresUrls.join(', ') }`);
+                console.log(`Found features: ${ featuresUrls.join(', ') }`);
 
+                let tags = CucumberAdapter.getTags(this.karma.config.args);
+                console.log(`Tags: ${ tags.join(', ') }`);
                 let features = CucumberAdapter.loadFeatures(featuresUrls);
                 let cucumberReporterNode = CucumberAdapter.createCucumberReporterNode();
-                this.runFeatures(features, cucumberReporterNode);
+                this.runFeatures(features, tags, cucumberReporterNode);
             };
         }
 
@@ -45,15 +47,26 @@ module karma {
             return cucumberReporterNode;
         }
 
-        private runFeatures(features: [string, string][], rootElement: HTMLElement): void {
+        private static getTags(args: string[]): string[] {
+            let tagsIndex = args.indexOf('--tags');
+            if (tagsIndex < 0) {
+                return [];
+            }
+
+            let lastTagsIndex = args.indexOf('--', tagsIndex + 1);
+            return args.slice(tagsIndex + 1, lastTagsIndex < 0 ? args.length : lastTagsIndex).filter(s => !!s);
+        }
+
+        private runFeatures(features: [string, string][], tags: string[], rootElement: HTMLElement): void {
             let self = this;
             let cucumberInstance = new Cucumber(
                 features, function() {
                     var scenario: cucumber.IScenario = <any>this; // Supplied by Cucumber
                     self.stepDefinitionsCallbacks.forEach(c => c(scenario));
-                });
+                }, { tags: tags });
             cucumberInstance.attachListener(new cucumber.CucumberHTMLListener(rootElement));
             cucumberInstance.attachListener(new cucumber.CucumberKarmaListener(this.karma));
+
             // cucumberInstance.start(() => { });
             cucumberInstance.start(() => this.karma.complete({ coverage: (<any>window).__coverage__ }));
         }

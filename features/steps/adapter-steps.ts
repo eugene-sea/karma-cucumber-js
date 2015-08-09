@@ -10,6 +10,7 @@ require('source-map-support').install();
 
 class World {
     karmaOutput = '';
+    tags: string[] = [];
     constructor(callback: () => void) { callback(); }
 }
 
@@ -24,44 +25,55 @@ export = function() {
 
     scenario.Given(/^Karma is configured to test these features$/, () => { });
 
-    scenario.Given(/^one passing scenario has "([^"]*)" tag$/, (tag: string, callback: cucumber.IStepCallback) => {
-        callback.pending();
-    });
+    scenario.Given(/^one passing scenario has "([^"]+)" tag$/, (tag: string) => { });
 
-    scenario.Given(/^one pending scenario has "([^"]*)" tag$/, (tag: string, callback: cucumber.IStepCallback) => {
-        callback.pending();
-    });
+    scenario.Given(/^one pending scenario has "([^"]+)" tag$/, (tag: string) => { });
 
     scenario.Given(
-        /^Karma is configured to test scenarios of "([^"]*)" tag only$/,
-        (tag: string, callback: cucumber.IStepCallback) => {
-            callback.pending();
+        /^Karma is configured to test scenarios of "([^"]+)" tag$/,
+        function(tag: string) {
+            let world = <World>this;
+            world.tags.push(tag);
         });
 
-    scenario.When(/^I run Karma$/, (callback: cucumber.IStepCallback) => {
-        exec('./node_modules/.bin/karma start', (error: Error, stdout: Buffer, stderr: Buffer) => {
-            let world = <World>this;
-            // console.log(stdout);
-            world.karmaOutput = stdout.toString();
-            callback();
-        });
+    scenario.When(/^I run Karma$/, function(callback: cucumber.IStepCallback) {
+        let world = <World>this;
+        exec(
+            `env KARMA_CLIENT_ARGS="--tags ${ world.tags.join(' ') }" ./node_modules/.bin/karma start`,
+            (error: Error, stdout: Buffer, stderr: Buffer) => {
+                // console.log(stdout);
+                world.karmaOutput = stdout.toString();
+                callback();
+            });
     });
 
     scenario.Then(
         /^Karma reports the following steps counts:$/,
-        (table: cucumber.IStepTable) => {
+        function(table: cucumber.IStepTable) {
             let world = <World>this;
-            let res = /.*Executed (\d+) of 1 \((\d+) FAILED\) \(skipped (\d+)\) \(\d+(?:.\d+)? secs \/ \d+(?:.\d+)? sec(?:s)?\)\s*$/g.exec(world.karmaOutput);
+            if (table.hashes()[0].Failed === '0') {
+                let res = /.*Executed (\d+) of 1 \(skipped (\d+)\) SUCCESS \(\d+(?:.\d+)? secs \/ \d+(?:.\d+)? sec(?:s)?\)\s*$/g.exec(world.karmaOutput);
 
-            should.exist(res);
+                should.exist(res);
 
-            should.exists(res[1]);
-            Number(res[1]).should.equal(Number(table.hashes()[0].Passed) + Number(table.hashes()[0].Failed));
+                should.exists(res[1]);
+                res[1].should.equal(table.hashes()[0].Passed);
 
-            should.exists(res[2]);
-            res[2].should.equal(table.hashes()[0].Failed);
+                should.exists(res[2]);
+                res[2].should.equal(table.hashes()[0].Skipped);
+            } else {
+                let res = /.*Executed (\d+) of 1 \((\d+) FAILED\) \(skipped (\d+)\) \(\d+(?:.\d+)? secs \/ \d+(?:.\d+)? sec(?:s)?\)\s*$/g.exec(world.karmaOutput);
 
-            should.exists(res[3]);
-            res[3].should.equal(table.hashes()[0].Skipped);
+                should.exist(res);
+
+                should.exists(res[1]);
+                Number(res[1]).should.equal(Number(table.hashes()[0].Passed) + Number(table.hashes()[0].Failed));
+
+                should.exists(res[2]);
+                res[2].should.equal(table.hashes()[0].Failed);
+
+                should.exists(res[3]);
+                res[3].should.equal(table.hashes()[0].Skipped);
+            }
         });
 }
