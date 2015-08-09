@@ -25,7 +25,6 @@
     "cucumber": "^0.5.2",
     "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.2.0",
-    "mocha": "^2.2.5",
     "should": "^7.0.2",
     "source-map-support": "^0.3.2",
     "tsd": "^0.6.3"
