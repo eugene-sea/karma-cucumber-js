@@ -12,9 +12,9 @@ class Adapter {
     static $inject = ['config.files'];
 
     constructor(files: any[]) {
-        let jqueryPath = dirname(require.resolve('jquery'));
-        files.unshift(createPattern(`${jqueryPath}/jquery.min.map`, false));
-        files.unshift(createPattern(`${jqueryPath}/jquery.min.js`));
+        let jQueryPath = dirname(require.resolve('jquery'));
+        files.unshift(createPattern(`${jQueryPath}/jquery.min.map`, false));
+        files.unshift(createPattern(`${jQueryPath}/jquery.min.js`));
 
         files.unshift(createPattern(`${__dirname}/../src/adapter.js.map`, false));
         files.unshift(createPattern(`${__dirname}/../src/adapter.js`));
