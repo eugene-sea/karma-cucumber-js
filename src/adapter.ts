@@ -74,7 +74,7 @@ module karma {
 }
 
 var __adapter__: cucumber.IKarmaCucumberAdapter;
-(function() {
+(() => {
     var adapter = new karma.CucumberAdapter(__karma__)
     __adapter__ = adapter;
     __karma__.start = adapter.getStart();
