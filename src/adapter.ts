@@ -61,7 +61,7 @@ module karma {
             let self = this;
             let cucumberInstance = new Cucumber(
                 features, function() {
-                    var scenario: cucumber.IScenario = <any>this; // Supplied by Cucumber
+                    let scenario: cucumber.IScenario = <any>this; // Supplied by Cucumber
                     self.stepDefinitionsCallbacks.forEach(c => c(scenario));
                 }, { tags: tags });
             cucumberInstance.attachListener(new cucumber.CucumberHTMLListener(rootElement));
@@ -75,7 +75,7 @@ module karma {
 
 var __adapter__: cucumber.IKarmaCucumberAdapter;
 (() => {
-    var adapter = new karma.CucumberAdapter(__karma__)
+    let adapter = new karma.CucumberAdapter(__karma__)
     __adapter__ = adapter;
     __karma__.start = adapter.getStart();
 })();
