@@ -90,7 +90,7 @@ var cucumber;
                         suite: [this.feature.getName(), this.scenario.getName()],
                         success: false,
                         skipped: false,
-                        time: (stepResult.getDuration() || 0) / 1000
+                        time: (stepResult.getDuration() || 0) / 1000000
                     };
                     if (stepResult.isSuccessful()) {
                         result.success = true;
