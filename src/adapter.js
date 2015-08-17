@@ -97,6 +97,7 @@ var cucumber;
                     }
                     else if (stepResult.isPending()) {
                         result.skipped = true;
+                        console.log("Step is pending: " + stepId);
                     }
                     else if (stepResult.isUndefined() || stepResult.isSkipped()) {
                         result.success = true;
@@ -106,9 +107,6 @@ var cucumber;
                         var error = stepResult.getFailureException();
                         var errorMessage = typeof error === 'string' ? error : error.stack;
                         result.log.push("Step: " + stepId + "\n" + errorMessage);
-                    }
-                    if (result.skipped) {
-                        console.log("Step is pending: " + stepId);
                     }
                     this.karma.result(result);
                     break;

@@ -42,6 +42,7 @@ module cucumber {
                         result.success = true;
                     } else if (stepResult.isPending()) {
                         result.skipped = true;
+                        console.log(`Step is pending: ${stepId}`);
                     } else if (stepResult.isUndefined() || stepResult.isSkipped()) {
                         result.success = true;
                         result.skipped = true;
@@ -49,10 +50,6 @@ module cucumber {
                         let error = stepResult.getFailureException();
                         let errorMessage = typeof error === 'string' ? error : error.stack;
                         result.log.push(`Step: ${stepId}\n${errorMessage}`);
-                    }
-
-                    if (result.skipped) {
-                        console.log(`Step is pending: ${stepId}`);
                     }
 
                     this.karma.result(result);
