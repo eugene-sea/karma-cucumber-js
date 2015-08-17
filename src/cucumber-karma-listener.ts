@@ -28,7 +28,7 @@ module cucumber {
 
                     let stepResult = event.getPayloadItem('stepResult');
                     let step = stepResult.getStep();
-                    let stepId = `${ step.getName() } : ${ step.getLine() }`;
+                    let stepId = `${ step.getKeyword() }${ step.getName() } : ${ step.getLine() }`;
                     let result: karma.IKarmaResult = {
                         id: stepId,
                         description: '',
@@ -49,6 +49,10 @@ module cucumber {
                         let error = stepResult.getFailureException();
                         let errorMessage = typeof error === 'string' ? error : error.stack;
                         result.log.push(`Step: ${stepId}\n${errorMessage}`);
+                    }
+
+                    if (result.skipped) {
+                        console.log(`Step is pending: ${stepId}`);
                     }
 
                     this.karma.result(result);

@@ -82,7 +82,7 @@ var cucumber;
                     this.karma.info({ total: this.totalSteps });
                     var stepResult = event.getPayloadItem('stepResult');
                     var step = stepResult.getStep();
-                    var stepId = step.getName() + " : " + step.getLine();
+                    var stepId = "" + step.getKeyword() + step.getName() + " : " + step.getLine();
                     var result = {
                         id: stepId,
                         description: '',
@@ -106,6 +106,9 @@ var cucumber;
                         var error = stepResult.getFailureException();
                         var errorMessage = typeof error === 'string' ? error : error.stack;
                         result.log.push("Step: " + stepId + "\n" + errorMessage);
+                    }
+                    if (result.skipped) {
+                        console.log("Step is pending: " + stepId);
                     }
                     this.karma.result(result);
                     break;
