@@ -4,6 +4,7 @@ This is yet another Cucumber.js adapter for Karma. It supports latest version of
 This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by Cucumber.js) are peer dependencies.
 
 ## Getting Started
+
 ``` Shell
 npm install jquery --save-dev
 npm install cucumber --save-dev
@@ -11,6 +12,7 @@ npm install karma-cucumber-js --save-dev
 ```
 
 ### Configuring karma.conf.js
+
 ``` JavaScript
 ...
 frameworks: ['cucumber-js'],
@@ -28,6 +30,7 @@ client: { // Specify this if you want to test features/scenarios with certain ta
 ```
 
 ## Step Definitions
+
 ``` JavaScript
 __adapter__.addStepDefinitions(function (scenario) {
     scenario.Given(/^there is a test step$/, function () { });
@@ -39,5 +42,6 @@ __adapter__.addStepDefinitions(function (scenario) {
 ```
 
 ## License
+
 Copyright (c) 2015 Eugene Shalyuk.
 This project is licensed under the terms of the MIT license.
