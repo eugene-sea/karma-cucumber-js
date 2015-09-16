@@ -16,13 +16,13 @@ npm install karma-cucumber-js --save-dev
 frameworks: ['cucumber-js'],
 ...
 files: [
-	// Feature files to test
-	{ pattern: 'features/*.feature', included: false },
-	... // Include JS files with step definitions and any other files they require
+  // Feature files to test
+  { pattern: 'features/*.feature', included: false },
+  ... // Include JS files with step definitions and any other files they require
 ],
 ...
 client: { // Specify this if you want to test features/scenarios with certain tags only
-	args: ['--tags', '@frontend']
+  args: ['--tags', '@frontend']
 },
 ...
 ```
@@ -30,11 +30,11 @@ client: { // Specify this if you want to test features/scenarios with certain ta
 ## Step Definitions
 ``` JavaScript
 __adapter__.addStepDefinitions(function (scenario) {
-	scenario.Given(/^there is a test step$/, function () { });
-	scenario.When(/^it is executed$/, function () { });
-	scenario.When(/^it is not executed$/, function (callback) { return callback.pending(); });
-	scenario.Then(/^test succeeds$/, function () { });
-	scenario.Then(/^test fails$/, function (callback) { return callback.fail(new Error('Step failed')); });
+    scenario.Given(/^there is a test step$/, function () { });
+    scenario.When(/^it is executed$/, function () { });
+    scenario.When(/^it is not executed$/, function (callback) { return callback.pending(); });
+    scenario.Then(/^test succeeds$/, function () { });
+    scenario.Then(/^test fails$/, function (callback) { return callback.fail(new Error('Step failed')); });
 });
 ```
 
