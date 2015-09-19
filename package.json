@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "test": "./node_modules/.bin/cucumber.js ./features",
-    "update-components": "npm update && tsd update",
+    "update-components": "npm update && tsd update --save --overwrite",
     "updates": "npm outdated"
   },
   "repository": {
