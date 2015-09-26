@@ -28,12 +28,13 @@ module cucumber {
 
                     let stepResult = event.getPayloadItem('stepResult');
                     let step = stepResult.getStep();
-                    let stepId = `${ step.getKeyword() }${ step.getName() } : ${ step.getLine() }`;
+                    const suite = [this.feature.getName(), '->', this.scenario.getName()];
+                    const stepId = `${ step.getKeyword() }${ step.getName() } : ${ step.getLine() }`;
                     let result: karma.IKarmaResult = {
                         id: stepId,
                         description: '',
                         log: [],
-                        suite: [this.feature.getName(), this.scenario.getName()],
+                        suite: suite,
                         success: false,
                         skipped: false,
                         time: (stepResult.getDuration() || 0) / 1000000
@@ -42,10 +43,11 @@ module cucumber {
                         result.success = true;
                     } else if (stepResult.isPending()) {
                         result.skipped = true;
-                        console.log(`Step is pending: ${stepId}`);
+                        console.log(`Step is pending: ${ suite.join(' ') } -> ${stepId}`);
                     } else if (stepResult.isUndefined() || stepResult.isSkipped()) {
                         result.success = true;
                         result.skipped = true;
+                        console.log(`Step is undefined: ${ suite.join(' ') } -> ${stepId}`);
                     } else {
                         let error = stepResult.getFailureException();
                         let errorMessage = typeof error === 'string' ? error : error.stack;
