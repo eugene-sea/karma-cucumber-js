@@ -47,7 +47,9 @@ module cucumber {
                     } else if (stepResult.isUndefined() || stepResult.isSkipped()) {
                         result.success = true;
                         result.skipped = true;
-                        console.log(`Step is undefined: ${ suite.join(' ') } -> ${stepId}`);
+                        if (stepResult.isUndefined()) {
+                            console.log(`Step is undefined: ${ suite.join(' ') } -> ${stepId}`);
+                        }
                     } else {
                         let error = stepResult.getFailureException();
                         let errorMessage = typeof error === 'string' ? error : error.stack;

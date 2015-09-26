@@ -41,7 +41,7 @@ export = function() {
         exec(
             `env KARMA_CLIENT_ARGS="--tags ${ world.tags.join(' ') }" ./node_modules/.bin/karma start`,
             (error: Error, stdout: Buffer, stderr: Buffer) => {
-                // console.log(stdout);
+                console.log(stdout);
                 world.karmaOutput = stdout.toString();
                 callback();
             });
