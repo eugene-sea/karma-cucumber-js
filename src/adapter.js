@@ -83,10 +83,11 @@ var cucumber;
                     var stepResult = event.getPayloadItem('stepResult');
                     var step = stepResult.getStep();
                     var suite = [this.feature.getName(), '->', this.scenario.getName()];
-                    var stepId = "" + step.getKeyword() + step.getName() + " : " + step.getLine();
+                    var description = "" + step.getKeyword() + step.getName();
+                    var stepId = description + " : " + step.getLine();
                     var result = {
                         id: stepId,
-                        description: '',
+                        description: description,
                         log: [],
                         suite: suite,
                         success: false,
