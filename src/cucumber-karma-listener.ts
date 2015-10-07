@@ -29,10 +29,11 @@ module cucumber {
                     let stepResult = event.getPayloadItem('stepResult');
                     let step = stepResult.getStep();
                     const suite = [this.feature.getName(), '->', this.scenario.getName()];
-                    const stepId = `${ step.getKeyword() }${ step.getName() } : ${ step.getLine() }`;
+                    const description = `${ step.getKeyword() }${ step.getName() }`;
+                    const stepId = `${ description } : ${ step.getLine() }`;
                     let result: karma.IKarmaResult = {
                         id: stepId,
-                        description: '',
+                        description: description,
                         log: [],
                         suite: suite,
                         success: false,
