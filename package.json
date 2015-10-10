@@ -23,7 +23,7 @@
   "author": "Eugene Shalyuk",
   "license": "MIT",
   "devDependencies": {
-    "cucumber": "^0.6.0",
+    "cucumber": "^0.7.0",
     "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.2.0",
     "should": "^7.0.2",
