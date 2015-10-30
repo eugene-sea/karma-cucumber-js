@@ -9,7 +9,7 @@ export class BDDJSONReporter implements karma.IKarmaReporter {
     static failed = 'failed';
     static pending = 'pending';
 
-    report: { [feature: string]: { [scenario: string]: string; }; } = {};
+    report: { [feature: string]: { [scenario: string]: string; featureStatus: string; }; } = {};
 
     static $inject = ['baseReporterDecorator', 'logger', 'helper', 'config'];
 
@@ -28,12 +28,15 @@ export class BDDJSONReporter implements karma.IKarmaReporter {
             }
 
             if (!this.report[result.suite[0]]) {
-                this.report[result.suite[0]] = {};
+                this.report[result.suite[0]] = { featureStatus: null };
             }
 
             const stepStatus = BDDJSONReporter.getStepStatus(result);
             this.report[result.suite[0]][result.suite[1]] = BDDJSONReporter.mergeStatus(
                 this.report[result.suite[0]][result.suite[1]], stepStatus);
+            this.report[result.suite[0]].featureStatus = BDDJSONReporter.mergeStatus(
+                this.report[result.suite[0]].featureStatus,
+                this.report[result.suite[0]][result.suite[1]]);
         }
 
         this.onRunComplete = () => {

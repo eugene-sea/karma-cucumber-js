@@ -39,5 +39,26 @@ describe('BDDJSONReporter', function () {
             reporter.report['test feature']['test scenario'].should.be.equal(bdd_json_reporter_1.BDDJSONReporter.failed);
         });
     });
+    describe('Calculating features status logic', function () {
+        it('If all scenarios are succeeded then feature should be reported as succeeded', function () {
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 1', true, false));
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 2', true, false));
+            should.exist(reporter.report['test feature']);
+            reporter.report['test feature'].featureStatus.should.be.equal(bdd_json_reporter_1.BDDJSONReporter.passed);
+        });
+        it('If some scenarios are succeeded and some are pending then feature should be reported as pending', function () {
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 1', true, true));
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 2', true, false));
+            should.exist(reporter.report['test feature']);
+            reporter.report['test feature'].featureStatus.should.be.equal(bdd_json_reporter_1.BDDJSONReporter.pending);
+        });
+        it('If some scenarios are failed then feature should be reported as failed', function () {
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 1', false, false));
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 2', false, true));
+            reporter.onSpecComplete(null, createKarmaResult('test feature', 'test scenario 3', true, false));
+            should.exist(reporter.report['test feature']);
+            reporter.report['test feature'].featureStatus.should.be.equal(bdd_json_reporter_1.BDDJSONReporter.failed);
+        });
+    });
 });
 //# sourceMappingURL=bdd-json-reporter-tests.js.map

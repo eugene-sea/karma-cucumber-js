@@ -22,7 +22,6 @@ module.exports = function () {
     scenario.Given(/^one pending scenario has "([^"]+)" tag$/, function (tag) { });
     scenario.Given(/^Karma is configured to test scenarios of "([^"]+)" tag$/, function (tag) {
         var world = this;
-        console.log(world);
         world.tags.push(tag);
     });
     scenario.When(/^I run Karma$/, function (callback) {
