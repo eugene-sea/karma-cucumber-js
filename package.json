@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "./scripts/build.sh",
-    "test": "./node_modules/.bin/cucumber.js ./features",
+    "test": "./node_modules/.bin/mocha --reporter spec tests/*.js; ./node_modules/.bin/cucumber.js ./features",
     "update-components": "npm update && tsd update --save --overwrite",
     "updates": "npm outdated"
   },
@@ -26,6 +26,7 @@
     "cucumber": "^0.7.0",
     "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.2.0",
+    "mocha": "^2.3.3",
     "should": "^7.0.2",
     "source-map-support": "^0.3.2",
     "tsd": "^0.6.3"

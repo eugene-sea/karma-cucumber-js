@@ -17,6 +17,11 @@ declare module karma {
         complete(info: { coverage: any }): void;
         result(info: IKarmaResult): void;
     }
+
+    export interface IKarmaReporter {
+        onSpecComplete(browser: any, result: IKarmaResult): void;
+        onRunComplete(): void;
+    }
 }
 
 declare var __karma__: karma.IKarma;

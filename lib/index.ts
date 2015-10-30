@@ -1,8 +1,11 @@
 /// <reference path="../typings/node/node.d.ts" />
+/// <reference path="../typings/karma/karma.d.ts" />
 
 'use strict';
 
 import { dirname } from 'path';
+
+import { BDDJSONReporter } from './bdd-json-reporter';
 
 function createPattern(path: string, included = true) {
     return { pattern: path, included: included, served: true, watched: false }
@@ -27,4 +30,4 @@ class Adapter {
     }
 }
 
-export = { 'framework:cucumber-js': ['factory', Adapter] };
+export = { 'framework:cucumber-js': ['type', Adapter], 'reporter:bdd-json': ['type', BDDJSONReporter] };

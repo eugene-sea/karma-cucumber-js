@@ -7,5 +7,5 @@ __adapter__.addStepDefinitions(scenario => {
     scenario.When(/^it is executed$/, () => { });
     scenario.When(/^it is not executed$/, (callback: cucumber.IStepCallback) => callback.pending());
     scenario.Then(/^test succeeds$/, () => { });
-    scenario.Then(/^test fails$/, (callback: cucumber.IStepCallback) => callback.fail(new Error('Step failed')));
+    scenario.Then(/^test fails$/, (callback: cucumber.IStepCallback) => callback(new Error('Step failed')));
 });

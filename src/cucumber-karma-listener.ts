@@ -28,7 +28,7 @@ module cucumber {
 
                     let stepResult = event.getPayloadItem('stepResult');
                     let step = stepResult.getStep();
-                    const suite = [this.feature.getName(), '->', this.scenario.getName()];
+                    const suite = [this.feature.getName(), this.scenario.getName()];
                     const description = `${ step.getKeyword() }${ step.getName() }`;
                     const stepId = `${ description } : ${ step.getLine() }`;
                     let result: karma.IKarmaResult = {
@@ -44,12 +44,12 @@ module cucumber {
                         result.success = true;
                     } else if (stepResult.isPending()) {
                         result.skipped = true;
-                        console.log(`Step is pending: ${ suite.join(' ') } -> ${stepId}`);
+                        console.log(`Step is pending: ${ suite.join(' -> ') } -> ${stepId}`);
                     } else if (stepResult.isUndefined() || stepResult.isSkipped()) {
                         result.success = true;
                         result.skipped = true;
                         if (stepResult.isUndefined()) {
-                            console.log(`Step is undefined: ${ suite.join(' ') } -> ${stepId}`);
+                            console.log(`Step is undefined: ${ suite.join(' -> ') } -> ${stepId}`);
                         }
                     } else {
                         let error = stepResult.getFailureException();

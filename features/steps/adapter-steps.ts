@@ -6,12 +6,14 @@
 import { exec } from 'child_process';
 import * as should from 'should';
 
+import * as fs from 'fs';
+
 require('source-map-support').install();
 
 class World {
     karmaOutput = '';
     tags: string[] = [];
-    constructor(callback: () => void) { callback(); }
+    constructor(callback: () => void) { fs.unlink('results.json', () => callback()); }
 }
 
 export = function() {
@@ -75,5 +77,7 @@ export = function() {
                 should.exist(res[3]);
                 res[3].should.equal(table.hashes()[0].Skipped);
             }
+
+            should.exist(fs.statSync('results.json'));
         });
 }

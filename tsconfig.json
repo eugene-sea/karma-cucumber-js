@@ -9,6 +9,8 @@
     },
     "files": [
         "lib/index.ts",
+        "lib/bdd-json-reporter.ts",
+        "tests/bdd-json-reporter-tests.ts",
         "features/steps/adapter-steps.ts"
     ]
 }

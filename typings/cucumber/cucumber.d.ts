@@ -57,9 +57,8 @@ declare module cucumber {
     }
 
     export interface IStepCallback {
-        (): void;
+        (error?: Error): void;
         pending(): void;
-        fail(error: Error): void;
     }
 
     export interface IStepTable {

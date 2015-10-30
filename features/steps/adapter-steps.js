@@ -3,12 +3,13 @@
 'use strict';
 var child_process_1 = require('child_process');
 var should = require('should');
+var fs = require('fs');
 require('source-map-support').install();
 var World = (function () {
     function World(callback) {
         this.karmaOutput = '';
         this.tags = [];
-        callback();
+        fs.unlink('results.json', function () { return callback(); });
     }
     return World;
 })();
@@ -21,6 +22,7 @@ module.exports = function () {
     scenario.Given(/^one pending scenario has "([^"]+)" tag$/, function (tag) { });
     scenario.Given(/^Karma is configured to test scenarios of "([^"]+)" tag$/, function (tag) {
         var world = this;
+        console.log(world);
         world.tags.push(tag);
     });
     scenario.When(/^I run Karma$/, function (callback) {
@@ -51,6 +53,7 @@ module.exports = function () {
             should.exist(res[3]);
             res[3].should.equal(table.hashes()[0].Skipped);
         }
+        should.exist(fs.statSync('results.json'));
     });
 };
 //# sourceMappingURL=adapter-steps.js.map
