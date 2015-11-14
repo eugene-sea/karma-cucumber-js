@@ -34,10 +34,7 @@ declare module cucumber {
     }
 
     export interface IStepResult {
-        isSuccessful(): boolean;
-        isPending(): boolean;
-        isUndefined(): boolean;
-        isSkipped(): boolean;
+        getStatus(): string;
         getStep(): IFeatureElement;
         getFailureException(): string | { stack: string; };
         getDuration(): number;
@@ -69,7 +66,7 @@ declare module cucumber {
     }
 
     export interface IScenario {
-        World: { new (callback: () => void): any } | ((callback: (world: any) => void) => void);
+        World: { new (): any };
         Given(regExp: RegExp, callback: Function): void;
         When(regExp: RegExp, callback: Function): void;
         Then(regExp: RegExp, callback: Function): void;

@@ -33,12 +33,9 @@ module cucumber {
                     let stepResult = event.getPayloadItem('stepResult');
                     step = stepResult.getStep();
                     let result: IDOMFormatterStepResult;
-                    if (stepResult.isSuccessful()) {
-                        result = { status: 'passed' };
-                    } else if (stepResult.isPending()) {
-                        result = { status: 'pending' };
-                    } else if (stepResult.isUndefined() || stepResult.isSkipped()) {
-                        result = { status: 'skipped' };
+                    const status = stepResult.getStatus();
+                    if (status !== 'failed') {
+                        result = { status: status };
                     } else {
                         let error = stepResult.getFailureException();
                         let errorMessage = typeof error === 'string' ? error : error.stack;

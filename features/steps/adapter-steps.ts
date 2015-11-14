@@ -13,7 +13,15 @@ require('source-map-support').install();
 class World {
     karmaOutput = '';
     tags: string[] = [];
-    constructor(callback: () => void) { fs.unlink('results.json', () => callback()); }
+    constructor() {
+        try {
+            fs.unlinkSync('results.json');
+        } catch (error) {
+            if (error.code !== 'ENOENT') {
+                throw error;
+            }
+        }
+    }
 }
 
 export = function() {

@@ -40,21 +40,25 @@ module cucumber {
                         skipped: false,
                         time: (stepResult.getDuration() || 0) / 1000000
                     };
-                    if (stepResult.isSuccessful()) {
-                        result.success = true;
-                    } else if (stepResult.isPending()) {
-                        result.skipped = true;
-                        console.log(`Step is pending: ${ suite.join(' -> ') } -> ${stepId}`);
-                    } else if (stepResult.isUndefined() || stepResult.isSkipped()) {
-                        result.success = true;
-                        result.skipped = true;
-                        if (stepResult.isUndefined()) {
+
+                    switch (stepResult.getStatus()) {
+                        case 'passed':
+                            result.success = true;
+                            break;
+                        case 'pending':
+                            result.skipped = true;
+                            console.log(`Step is pending: ${ suite.join(' -> ') } -> ${stepId}`);
+                            break;
+                        case 'undefined':
                             console.log(`Step is undefined: ${ suite.join(' -> ') } -> ${stepId}`);
-                        }
-                    } else {
-                        let error = stepResult.getFailureException();
-                        let errorMessage = typeof error === 'string' ? error : error.stack;
-                        result.log.push(`Step: ${stepId}\n${errorMessage}`);
+                        case 'skipped':
+                            result.success = true;
+                            result.skipped = true;
+                            break;
+                        default:
+                            let error = stepResult.getFailureException();
+                            let errorMessage = typeof error === 'string' ? error : error.stack;
+                            result.log.push(`Step: ${stepId}\n${errorMessage}`);
                     }
 
                     this.karma.result(result);

@@ -6,10 +6,17 @@ var should = require('should');
 var fs = require('fs');
 require('source-map-support').install();
 var World = (function () {
-    function World(callback) {
+    function World() {
         this.karmaOutput = '';
         this.tags = [];
-        fs.unlink('results.json', function () { return callback(); });
+        try {
+            fs.unlinkSync('results.json');
+        }
+        catch (error) {
+            if (error.code !== 'ENOENT') {
+                throw error;
+            }
+        }
     }
     return World;
 })();

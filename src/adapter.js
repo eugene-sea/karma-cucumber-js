@@ -26,14 +26,9 @@ var cucumber;
                     var stepResult = event.getPayloadItem('stepResult');
                     step = stepResult.getStep();
                     var result;
-                    if (stepResult.isSuccessful()) {
-                        result = { status: 'passed' };
-                    }
-                    else if (stepResult.isPending()) {
-                        result = { status: 'pending' };
-                    }
-                    else if (stepResult.isUndefined() || stepResult.isSkipped()) {
-                        result = { status: 'skipped' };
+                    var status_1 = stepResult.getStatus();
+                    if (status_1 !== 'failed') {
+                        result = { status: status_1 };
                     }
                     else {
                         var error = stepResult.getFailureException();
@@ -94,24 +89,24 @@ var cucumber;
                         skipped: false,
                         time: (stepResult.getDuration() || 0) / 1000000
                     };
-                    if (stepResult.isSuccessful()) {
-                        result.success = true;
-                    }
-                    else if (stepResult.isPending()) {
-                        result.skipped = true;
-                        console.log("Step is pending: " + suite.join(' -> ') + " -> " + stepId);
-                    }
-                    else if (stepResult.isUndefined() || stepResult.isSkipped()) {
-                        result.success = true;
-                        result.skipped = true;
-                        if (stepResult.isUndefined()) {
+                    switch (stepResult.getStatus()) {
+                        case 'passed':
+                            result.success = true;
+                            break;
+                        case 'pending':
+                            result.skipped = true;
+                            console.log("Step is pending: " + suite.join(' -> ') + " -> " + stepId);
+                            break;
+                        case 'undefined':
                             console.log("Step is undefined: " + suite.join(' -> ') + " -> " + stepId);
-                        }
-                    }
-                    else {
-                        var error = stepResult.getFailureException();
-                        var errorMessage = typeof error === 'string' ? error : error.stack;
-                        result.log.push("Step: " + stepId + "\n" + errorMessage);
+                        case 'skipped':
+                            result.success = true;
+                            result.skipped = true;
+                            break;
+                        default:
+                            var error = stepResult.getFailureException();
+                            var errorMessage = typeof error === 'string' ? error : error.stack;
+                            result.log.push("Step: " + stepId + "\n" + errorMessage);
                     }
                     this.karma.result(result);
                     break;
