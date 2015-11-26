@@ -1,6 +1,6 @@
 # karma-cucumber-js
 
-This is yet another Cucumber.js adapter for Karma. In contrast to other adapters it supports latest version of Cucumber.js. 
+This is yet another Cucumber.js adapter for Karma. In contrast to other adapters it supports latest version of Cucumber.js.
 This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by Cucumber.js) are peer dependencies.
 
 ## Getting Started
@@ -29,7 +29,7 @@ client: { // Specify this if you want to test features/scenarios with certain ta
 ...
 reporters: ['bdd-json'], // Specify this reporter if you need to integrate test results into living documentation
 bddJSONReporter: {
-  outputFile: 'results.json' // 'results.json' will be filled with all scenarios test results 
+  outputFile: 'results.json' // 'results.json' will be filled with all scenarios test results
 },
 ...
 ```
