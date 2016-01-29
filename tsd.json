@@ -6,10 +6,10 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "6eebd5e90a1cbd6b47b0705ba72dbcd5baf846f3"
+      "commit": "5ea7d92bb39c7a26f49dc3de2c566d5ae325e19e"
     },
     "should/should.d.ts": {
-      "commit": "6eebd5e90a1cbd6b47b0705ba72dbcd5baf846f3"
+      "commit": "5ea7d92bb39c7a26f49dc3de2c566d5ae325e19e"
     }
   }
 }
