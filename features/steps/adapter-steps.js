@@ -19,7 +19,7 @@ var World = (function () {
         }
     }
     return World;
-})();
+}());
 module.exports = function () {
     var scenario = this;
     scenario.World = World;

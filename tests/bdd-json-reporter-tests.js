@@ -1,6 +1,7 @@
 /// <reference path="../typings/mocha/mocha.d.ts" />
 /// <reference path="../typings/should/should.d.ts" />
 /// <reference path="../typings/karma/karma.d.ts" />
+"use strict";
 require('source-map-support').install();
 var should = require('should');
 var bdd_json_reporter_1 = require('../lib/bdd-json-reporter');

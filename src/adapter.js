@@ -25,7 +25,7 @@ var cucumber;
                 case 'StepResult':
                     var stepResult = event.getPayloadItem('stepResult');
                     step = stepResult.getStep();
-                    var result;
+                    var result = void 0;
                     var status_1 = stepResult.getStatus();
                     if (status_1 !== 'failed') {
                         result = { status: status_1 };
@@ -50,7 +50,7 @@ var cucumber;
             };
         };
         return CucumberHTMLListener;
-    })();
+    }());
     cucumber.CucumberHTMLListener = CucumberHTMLListener;
 })(cucumber || (cucumber = {}));
 /// <reference path="../typings/karma/karma.d.ts" />
@@ -114,7 +114,7 @@ var cucumber;
             callback();
         };
         return CucumberKarmaListener;
-    })();
+    }());
     cucumber.CucumberKarmaListener = CucumberKarmaListener;
 })(cucumber || (cucumber = {}));
 /// <reference path="../typings/karma/karma.d.ts" />
@@ -181,7 +181,7 @@ var karma;
             cucumberInstance.start(function () { return _this.karma.complete({ coverage: window.__coverage__ }); });
         };
         return CucumberAdapter;
-    })();
+    }());
     karma_1.CucumberAdapter = CucumberAdapter;
 })(karma || (karma = {}));
 var __adapter__;

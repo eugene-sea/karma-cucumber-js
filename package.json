@@ -1,6 +1,6 @@
 {
   "name": "karma-cucumber-js",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Karma adapter for running Cucumber.js features",
   "main": "lib/index.js",
   "scripts": {
@@ -23,16 +23,16 @@
   "author": "Eugene Shalyuk",
   "license": "MIT",
   "devDependencies": {
-    "cucumber": "^0.9.0",
+    "cucumber": "^0.10.2",
     "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.2.0",
     "mocha": "^2.3.3",
-    "should": "^7.0.2",
-    "source-map-support": "^0.3.2",
+    "should": "^8.3.1",
+    "source-map-support": "^0.4.0",
     "tsd": "^0.6.3"
   },
   "peerDependencies": {
-    "cucumber": "^0.9.0",
+    "cucumber": "^0.10.2",
     "jquery": "*"
   }
 }
