@@ -42,15 +42,15 @@ declare module cucumber {
 
     export interface ICucumberEvent {
         getName(): string;
-        getPayloadItem(item: 'stepResult'): IStepResult;
-        getPayloadItem(item: 'feature'): IFeatureElement;
-        getPayloadItem(item: 'scenario'): IFeatureElement;
-        getPayloadItem(item: 'step'): IFeatureElement;
-        getPayloadItem(item: string): any;
+        getPayload(item: 'stepResult'): IStepResult;
+        getPayload(item: 'feature'): IFeatureElement;
+        getPayload(item: 'scenario'): IFeatureElement;
+        getPayload(item: 'step'): IFeatureElement;
+        getPayload(item: string): any;
     }
 
     export interface ICucumberListener {
-        hear(event: ICucumberEvent, callback: () => void): void;
+        hear(event: ICucumberEvent, defaultTimeout: number, callback: () => void): void;
     }
 
     export interface IStepCallback {
@@ -67,6 +67,8 @@ declare module cucumber {
 
     export interface IScenario {
         World: { new (): any };
+        Before(callback: Function): void;
+        After(callback: Function): void;
         Given(regExp: RegExp, callback: Function): void;
         When(regExp: RegExp, callback: Function): void;
         Then(regExp: RegExp, callback: Function): void;

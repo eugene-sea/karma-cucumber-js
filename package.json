@@ -1,11 +1,11 @@
 {
   "name": "karma-cucumber-js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Karma adapter for running Cucumber.js features",
   "main": "lib/index.js",
   "scripts": {
     "build": "./scripts/build.sh",
-    "test": "./node_modules/.bin/mocha --reporter spec tests/*.js; ./node_modules/.bin/cucumber.js ./features",
+    "test": "mocha --reporter spec tests/*.js; cucumber.js ./features",
     "update-components": "npm update && tsd update --save --overwrite",
     "updates": "npm outdated"
   },
@@ -23,16 +23,16 @@
   "author": "Eugene Shalyuk",
   "license": "MIT",
   "devDependencies": {
-    "cucumber": "^0.10.2",
-    "karma": "^0.13.3",
-    "karma-chrome-launcher": "^0.2.0",
-    "mocha": "^2.3.3",
-    "should": "^8.3.1",
+    "cucumber": "^1.2.0",
+    "karma": "^1.1.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "mocha": "^2.5.3",
+    "should": "^9.0.2",
     "source-map-support": "^0.4.0",
     "tsd": "^0.6.3"
   },
   "peerDependencies": {
-    "cucumber": "^0.10.2",
+    "cucumber": "^1.2.0",
     "jquery": "*"
   }
 }

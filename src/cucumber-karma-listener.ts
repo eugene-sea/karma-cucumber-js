@@ -11,22 +11,22 @@ module cucumber {
 
         constructor(private karma: karma.IKarma) { }
 
-        hear(event: ICucumberEvent, callback: () => void): void {
+        hear(event: ICucumberEvent, defaultTimeout: number, callback: () => void): void {
             let eventName = event.getName();
             switch (eventName) {
                 case 'BeforeFeature':
-                    this.feature = event.getPayloadItem('feature');
+                    this.feature = event.getPayload('feature');
                     break;
 
                 case 'BeforeScenario':
-                    this.scenario = event.getPayloadItem('scenario');
+                    this.scenario = event.getPayload('scenario');
                     break;
 
                 case 'StepResult':
                     ++this.totalSteps;
                     this.karma.info({ total: this.totalSteps });
 
-                    let stepResult = event.getPayloadItem('stepResult');
+                    let stepResult = event.getPayload('stepResult');
                     let step = stepResult.getStep();
                     const suite = [this.feature.getName(), this.scenario.getName()];
                     const description = `${ step.getKeyword() }${ step.getName() }`;

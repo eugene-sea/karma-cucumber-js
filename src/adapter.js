@@ -6,24 +6,24 @@ var cucumber;
         function CucumberHTMLListener(rootElement) {
             this.formatter = new CucumberHTML.DOMFormatter(rootElement);
         }
-        CucumberHTMLListener.prototype.hear = function (event, callback) {
+        CucumberHTMLListener.prototype.hear = function (event, defaultTimeout, callback) {
             var eventName = event.getName();
             switch (eventName) {
                 case 'BeforeFeature':
-                    var feature = event.getPayloadItem('feature');
+                    var feature = event.getPayload('feature');
                     this.formatter.uri(feature.getUri());
                     this.formatter.feature(CucumberHTMLListener.getDOMFormatterElement(feature));
                     break;
                 case 'BeforeScenario':
-                    var scenario = event.getPayloadItem('scenario');
+                    var scenario = event.getPayload('scenario');
                     this.formatter.scenario(CucumberHTMLListener.getDOMFormatterElement(scenario));
                     break;
                 case 'BeforeStep':
-                    var step = event.getPayloadItem('step');
+                    var step = event.getPayload('step');
                     this.formatter.step(CucumberHTMLListener.getDOMFormatterElement(step));
                     break;
                 case 'StepResult':
-                    var stepResult = event.getPayloadItem('stepResult');
+                    var stepResult = event.getPayload('stepResult');
                     step = stepResult.getStep();
                     var result = void 0;
                     var status_1 = stepResult.getStatus();
@@ -63,19 +63,19 @@ var cucumber;
             this.karma = karma;
             this.totalSteps = 0;
         }
-        CucumberKarmaListener.prototype.hear = function (event, callback) {
+        CucumberKarmaListener.prototype.hear = function (event, defaultTimeout, callback) {
             var eventName = event.getName();
             switch (eventName) {
                 case 'BeforeFeature':
-                    this.feature = event.getPayloadItem('feature');
+                    this.feature = event.getPayload('feature');
                     break;
                 case 'BeforeScenario':
-                    this.scenario = event.getPayloadItem('scenario');
+                    this.scenario = event.getPayload('scenario');
                     break;
                 case 'StepResult':
                     ++this.totalSteps;
                     this.karma.info({ total: this.totalSteps });
-                    var stepResult = event.getPayloadItem('stepResult');
+                    var stepResult = event.getPayload('stepResult');
                     var step = stepResult.getStep();
                     var suite = [this.feature.getName(), this.scenario.getName()];
                     var description = "" + step.getKeyword() + step.getName();
