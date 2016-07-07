@@ -48,11 +48,13 @@ export = function() {
 
     scenario.When(/^I run Karma$/, function(callback: cucumber.IStepCallback) {
         let world = <World>this;
+        process.env.KARMA_CLIENT_ARGS = `--tags ${world.tags.join(' ')}`;
         exec(
-            `env KARMA_CLIENT_ARGS="--tags ${ world.tags.join(' ') }" ./node_modules/.bin/karma start`,
-            (error: Error, stdout: Buffer, stderr: Buffer) => {
+            'karma start',
+            { env: process.env },
+            (error: Error, stdout: string, stderr: string) => {
                 console.log(stdout);
-                world.karmaOutput = stdout.toString();
+                world.karmaOutput = stdout;
                 callback();
             });
     });

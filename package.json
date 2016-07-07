@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -p . && tsc -p ./src && tsc -p ./test_features",
-    "test": "mocha --reporter spec tests/*.js; cucumber.js ./features",
+    "test": "mocha --reporter spec tests/*.js && cucumberjs ./features",
     "update-components": "npm update && tsd update --save --overwrite",
     "updates": "npm outdated"
   },

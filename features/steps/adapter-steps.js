@@ -33,9 +33,10 @@ module.exports = function () {
     });
     scenario.When(/^I run Karma$/, function (callback) {
         var world = this;
-        child_process_1.exec("env KARMA_CLIENT_ARGS=\"--tags " + world.tags.join(' ') + "\" ./node_modules/.bin/karma start", function (error, stdout, stderr) {
+        process.env.KARMA_CLIENT_ARGS = "--tags " + world.tags.join(' ');
+        child_process_1.exec('karma start', { env: process.env }, function (error, stdout, stderr) {
             console.log(stdout);
-            world.karmaOutput = stdout.toString();
+            world.karmaOutput = stdout;
             callback();
         });
     });
