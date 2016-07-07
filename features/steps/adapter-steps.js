@@ -22,6 +22,7 @@ var World = (function () {
 }());
 module.exports = function () {
     var scenario = this;
+    scenario.setDefaultTimeout(15 * 1000);
     scenario.World = World;
     scenario.Given(/^I have several features with (\d+) passing steps, (\d+) pending and (\d+) failing$/, function (passing, pending, failing) { });
     scenario.Given(/^Karma is configured to test these features$/, function () { });

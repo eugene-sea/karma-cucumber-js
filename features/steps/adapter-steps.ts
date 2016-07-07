@@ -27,6 +27,7 @@ class World {
 export = function() {
     let scenario: cucumber.IScenario = this;
 
+    scenario.setDefaultTimeout(15 * 1000);
     scenario.World = World;
 
     scenario.Given(

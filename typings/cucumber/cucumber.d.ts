@@ -67,6 +67,7 @@ declare module cucumber {
 
     export interface IScenario {
         World: { new (): any };
+        setDefaultTimeout(timeout: number): void;
         Before(callback: Function): void;
         After(callback: Function): void;
         Given(regExp: RegExp, callback: Function): void;
