@@ -1,6 +1,6 @@
 {
   "name": "karma-cucumber-js",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Karma adapter for running Cucumber.js features",
   "main": "lib/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "karma": "^1.1.0",
     "karma-chrome-launcher": "^1.0.1",
     "mocha": "^2.5.3",
-    "should": "^9.0.2",
+    "should": "^10.0.0",
     "source-map-support": "^0.4.0",
     "tsd": "^0.6.3",
     "typescript": "^1.8.10"
