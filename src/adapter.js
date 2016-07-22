@@ -103,6 +103,11 @@ var cucumber;
                             result.success = true;
                             result.skipped = true;
                             break;
+                        case 'ambiguous':
+                            var ambiguousStepDefinitions = stepResult.getAmbiguousStepDefinitions()
+                                .map(function (s) { return (s.getUri() + " : " + s.getLine()); });
+                            result.log.push("Step is ambiguous: " + stepId + "\n" + ambiguousStepDefinitions.join('\n'));
+                            break;
                         default:
                             var error = stepResult.getFailureException();
                             var errorMessage = typeof error === 'string' ? error : error.stack;

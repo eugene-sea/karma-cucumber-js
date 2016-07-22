@@ -7,7 +7,7 @@ Scenario: Test several features in Karma
 	When I run Karma
 	Then Karma reports the following steps counts:
 		| Passed | Skipped | Failed |
-		| 9      | 2       | 1      |
+		| 9      | 4       | 2      |
 
 Scenario: Test features by tag in Karma
 	Given I have several features with 9 passing steps, 2 pending and 1 failing

@@ -2,6 +2,7 @@
 'use strict';
 __adapter__.addStepDefinitions(function (scenario) {
     scenario.Given(/^there is a test step$/, function () { });
+    scenario.Given(/^there is an ambiguous test step$/, function () { });
     scenario.When(/^it is executed$/, function () { });
     scenario.When(/^it is not executed$/, function (callback) { return callback(null, 'pending'); });
     scenario.Then(/^test succeeds$/, function () { });

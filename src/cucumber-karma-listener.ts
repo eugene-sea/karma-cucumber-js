@@ -29,8 +29,8 @@ module cucumber {
                     let stepResult = event.getPayload('stepResult');
                     let step = stepResult.getStep();
                     const suite = [this.feature.getName(), this.scenario.getName()];
-                    const description = `${ step.getKeyword() }${ step.getName() }`;
-                    const stepId = `${ description } : ${ step.getLine() }`;
+                    const description = `${step.getKeyword()}${step.getName()}`;
+                    const stepId = `${description} : ${step.getLine()}`;
                     let result: karma.IKarmaResult = {
                         id: stepId,
                         description: description,
@@ -47,17 +47,22 @@ module cucumber {
                             break;
                         case 'pending':
                             result.skipped = true;
-                            console.log(`Step is pending: ${ suite.join(' -> ') } -> ${stepId}`);
+                            console.log(`Step is pending: ${suite.join(' -> ')} -> ${stepId}`);
                             break;
                         case 'undefined':
-                            console.log(`Step is undefined: ${ suite.join(' -> ') } -> ${stepId}`);
+                            console.log(`Step is undefined: ${suite.join(' -> ')} -> ${stepId}`);
                         case 'skipped':
                             result.success = true;
                             result.skipped = true;
                             break;
+                        case 'ambiguous':
+                            const ambiguousStepDefinitions = stepResult.getAmbiguousStepDefinitions()
+                                .map(s => `${s.getUri()} : ${s.getLine()}`);
+                            result.log.push(`Step is ambiguous: ${stepId}\n${ambiguousStepDefinitions.join('\n')}`);
+                            break;
                         default:
-                            let error = stepResult.getFailureException();
-                            let errorMessage = typeof error === 'string' ? error : error.stack;
+                            const error = stepResult.getFailureException();
+                            const errorMessage = typeof error === 'string' ? error : error.stack;
                             result.log.push(`Step: ${stepId}\n${errorMessage}`);
                     }
 

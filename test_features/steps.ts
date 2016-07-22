@@ -4,6 +4,7 @@
 
 __adapter__.addStepDefinitions(scenario => {
     scenario.Given(/^there is a test step$/, () => { });
+    scenario.Given(/^there is an ambiguous test step$/, () => { });
     scenario.When(/^it is executed$/, () => { });
     scenario.When(/^it is not executed$/, (callback: cucumber.IStepCallback) => callback(null, 'pending'));
     scenario.Then(/^test succeeds$/, () => { });

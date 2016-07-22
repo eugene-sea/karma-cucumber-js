@@ -33,11 +33,17 @@ declare module cucumber {
         getDescription?(): string;
     }
 
+    export interface IStepDefenition {
+        getUri(): string;
+        getLine(): number;
+    }
+
     export interface IStepResult {
         getStatus(): string;
         getStep(): IFeatureElement;
         getFailureException(): string | { stack: string; };
         getDuration(): number;
+        getAmbiguousStepDefinitions(): IStepDefenition[];
     }
 
     export interface ICucumberEvent {

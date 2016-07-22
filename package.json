@@ -1,6 +1,6 @@
 {
   "name": "karma-cucumber-js",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Karma adapter for running Cucumber.js features",
   "main": "lib/index.js",
   "scripts": {

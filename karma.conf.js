@@ -18,7 +18,8 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       { pattern: 'test_features/*.feature', included: false, served: true, watched: true },
-      'test_features/**/*.js'
+      'test_features/**/*.js',
+      { pattern: 'src/*.ts', included: false, served: true, watched: true }
     ],
 
     // list of files to exclude

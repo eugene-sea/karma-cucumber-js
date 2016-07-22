@@ -4,10 +4,10 @@
         "noImplicitAny": true,
         "removeComments": false,
         "preserveConstEnums": true,
-        "sourceMap": true,
-        "out": "test_features/steps.js"
+        "sourceMap": true
     },
     "files": [
-        "steps.ts"
+        "steps.ts",
+        "steps2.ts"
     ]
 }
