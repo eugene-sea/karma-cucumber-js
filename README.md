@@ -1,6 +1,6 @@
 # karma-cucumber-js
 
-This is yet another Cucumber.js adapter for Karma. In contrast to other adapters it supports latest version of Cucumber.js (1.2.1).
+This is the #1 Cucumber.js adapter for Karma. In contrast to other adapters it supports latest version of Cucumber.js (1.2.1).
 This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by Cucumber.js) are peer dependencies.
 
 ## Getting Started
