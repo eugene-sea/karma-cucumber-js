@@ -27,10 +27,10 @@
   "devDependencies": {
     "cucumber": "^1.2.0",
     "jquery": "^3.1.0",
-    "karma": "^1.1.0",
+    "karma": "^1.2.0",
     "karma-chrome-launcher": "^1.0.1",
-    "mocha": "^2.5.3",
-    "should": "^10.0.0",
+    "mocha": "^3.0.2",
+    "should": "^11.0.0",
     "source-map-support": "^0.4.0",
     "tsd": "^0.6.3",
     "typescript": "^1.8.10"
