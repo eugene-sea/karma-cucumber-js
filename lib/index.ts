@@ -26,6 +26,8 @@ class Adapter {
         files.unshift(createPattern(`${cucumberPath}/../release/cucumber.js.map`, false));
         files.unshift(createPattern(`${cucumberPath}/../release/cucumber.js`));
 
+        files.unshift(createPattern(require.resolve('cucumber-html')));
+
         files.unshift(createPattern(`${__dirname}/../src/cucumber-report.css`));
     }
 }

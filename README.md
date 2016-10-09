@@ -1,6 +1,6 @@
 # karma-cucumber-js
 
-This is the #1 [Cucumber.js](https://github.com/cucumber/cucumber-js) adapter for [Karma](https://github.com/karma-runner/karma). In contrast to other adapters it supports latest version of Cucumber.js (1.2.1).
+This is the [#1](https://npms.io/search?q=cucumber+karma) [Cucumber.js](https://github.com/cucumber/cucumber-js) adapter for [Karma](https://github.com/karma-runner/karma). In contrast to other adapters it supports latest version of Cucumber.js (1.3.1).
 This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by Cucumber.js) are peer dependencies.
 
 ## Getting Started
@@ -55,5 +55,5 @@ __adapter__.addStepDefinitions(function (scenario) {
 
 ## License
 
-Copyright (c) 2015 Eugene Shalyuk.
+Copyright (c) 2016 Eugene Shalyuk.
 This project is licensed under the terms of the MIT license.

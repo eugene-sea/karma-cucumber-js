@@ -1,6 +1,6 @@
 {
   "name": "karma-cucumber-js",
-  "version": "0.3.3",
+  "version": "1.0.0",
   "description": "Karma adapter for running Cucumber.js features",
   "main": "lib/index.js",
   "scripts": {
@@ -27,16 +27,19 @@
   "devDependencies": {
     "cucumber": "^1.2.0",
     "jquery": "^3.1.0",
-    "karma": "^1.2.0",
-    "karma-chrome-launcher": "^1.0.1",
-    "mocha": "^3.0.2",
-    "should": "^11.0.0",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "mocha": "^3.1.0",
+    "should": "^11.1.0",
     "source-map-support": "^0.4.0",
     "tsd": "^0.6.3",
-    "typescript": "^1.8.10"
+    "typescript": "^2.0.3"
   },
   "peerDependencies": {
-    "cucumber": "^1.2.0",
+    "cucumber": "^1.3.0",
     "jquery": "*"
+  },
+  "dependencies": {
+    "cucumber-html": "^0.2.3"
   }
 }
