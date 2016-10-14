@@ -1,5 +1,4 @@
 /// <reference path="../../typings/cucumber/cucumber.d.ts" />
-/// <reference path="../../typings/should/should.d.ts" />
 'use strict';
 var child_process_1 = require('child_process');
 var should = require('should');

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p . && tsc -p ./src && tsc -p ./test_features",
     "test": "mocha --reporter spec tests/*.js && cucumberjs ./features",
-    "update-components": "npm update && tsd update --save --overwrite",
+    "update-components": "npm update",
     "updates": "npm outdated"
   },
   "repository": {
@@ -25,6 +25,9 @@
   "author": "Eugene Shalyuk",
   "license": "MIT",
   "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.45",
+    "@types/should": "^8.1.30",
     "cucumber": "^1.2.0",
     "jquery": "^3.1.0",
     "karma": "^1.3.0",
@@ -32,7 +35,6 @@
     "mocha": "^3.1.0",
     "should": "^11.1.0",
     "source-map-support": "^0.4.0",
-    "tsd": "^0.6.3",
     "typescript": "^2.0.3"
   },
   "peerDependencies": {

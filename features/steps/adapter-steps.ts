@@ -1,5 +1,4 @@
 /// <reference path="../../typings/cucumber/cucumber.d.ts" />
-/// <reference path="../../typings/should/should.d.ts" />
 
 'use strict';
 
@@ -24,7 +23,7 @@ class World {
     }
 }
 
-export = function() {
+export = function () {
     let scenario: cucumber.IScenario = this;
 
     scenario.setDefaultTimeout(15 * 1000);
@@ -42,12 +41,12 @@ export = function() {
 
     scenario.Given(
         /^Karma is configured to test scenarios of "([^"]+)" tag$/,
-        function(tag: string) {
+        function (tag: string) {
             let world = <World>this;
             world.tags.push(tag);
         });
 
-    scenario.When(/^I run Karma$/, function(callback: cucumber.IStepCallback) {
+    scenario.When(/^I run Karma$/, function (callback: cucumber.IStepCallback) {
         let world = <World>this;
         process.env.KARMA_CLIENT_ARGS = `--tags ${world.tags.join(' ')}`;
         exec(
@@ -62,7 +61,7 @@ export = function() {
 
     scenario.Then(
         /^Karma reports the following steps counts:$/,
-        function(table: cucumber.IStepTable) {
+        function (table: cucumber.IStepTable) {
             let world = <World>this;
             if (table.hashes()[0].Failed === '0') {
                 let res = /.*Executed (\d+) of 1 \(skipped (\d+)\) SUCCESS \(\d+(?:.\d+)? secs \/ \d+(?:.\d+)? sec(?:s)?\)\s*$/g.exec(world.karmaOutput);

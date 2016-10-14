@@ -77,14 +77,14 @@ var cucumber;
                     this.karma.info({ total: this.totalSteps });
                     var stepResult = event.getPayload('stepResult');
                     var step = stepResult.getStep();
-                    var suite = [this.feature.getName(), this.scenario.getName()];
+                    var suite_1 = [this.feature.getName(), this.scenario.getName()];
                     var description = "" + step.getKeyword() + step.getName();
                     var stepId = description + " : " + step.getLine();
                     var result = {
                         id: stepId,
                         description: description,
                         log: [],
-                        suite: suite,
+                        suite: suite_1,
                         success: false,
                         skipped: false,
                         time: (stepResult.getDuration() || 0) / 1000000
@@ -95,10 +95,10 @@ var cucumber;
                             break;
                         case 'pending':
                             result.skipped = true;
-                            console.log("Step is pending: " + suite.join(' -> ') + " -> " + stepId);
+                            console.log("Step is pending: " + suite_1.join(' -> ') + " -> " + stepId);
                             break;
                         case 'undefined':
-                            console.log("Step is undefined: " + suite.join(' -> ') + " -> " + stepId);
+                            console.log("Step is undefined: " + suite_1.join(' -> ') + " -> " + stepId);
                         case 'skipped':
                             result.success = true;
                             result.skipped = true;

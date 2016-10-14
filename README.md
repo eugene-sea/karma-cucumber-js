@@ -1,7 +1,7 @@
 # karma-cucumber-js
 
 This is the [#1](https://npms.io/search?q=cucumber+karma) [Cucumber.js](https://github.com/cucumber/cucumber-js) adapter for [Karma](https://github.com/karma-runner/karma). In contrast to other adapters it supports latest version of Cucumber.js (1.3.1).
-This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by Cucumber.js) are peer dependencies.
+This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by cucumber-html) are peer dependencies.
 
 ## Getting Started
 
@@ -43,6 +43,7 @@ bddJSONReporter: {
 ## Step Definitions
 
 In your [step definitions](https://github.com/cucumber/cucumber-js#step-definitions) files write them like this:
+
 ``` JavaScript
 __adapter__.addStepDefinitions(function (scenario) {
     scenario.Given(/^there is a test step$/, function () { });
