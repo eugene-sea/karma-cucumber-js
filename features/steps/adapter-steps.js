@@ -1,8 +1,8 @@
 /// <reference path="../../typings/cucumber/cucumber.d.ts" />
 'use strict';
-var child_process_1 = require('child_process');
-var should = require('should');
-var fs = require('fs');
+var child_process_1 = require("child_process");
+var should = require("should");
+var fs = require("fs");
 require('source-map-support').install();
 var World = (function () {
     function World() {

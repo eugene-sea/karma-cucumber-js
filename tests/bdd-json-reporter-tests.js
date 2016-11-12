@@ -1,8 +1,8 @@
 /// <reference path="../typings/karma/karma.d.ts" />
 "use strict";
 require('source-map-support').install();
-var should = require('should');
-var bdd_json_reporter_1 = require('../lib/bdd-json-reporter');
+var should = require("should");
+var bdd_json_reporter_1 = require("../lib/bdd-json-reporter");
 function createKarmaResult(feature, scenario, success, skipped) {
     return {
         id: 'id',
