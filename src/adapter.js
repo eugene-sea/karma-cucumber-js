@@ -79,7 +79,7 @@ var cucumber;
                     var step = stepResult.getStep();
                     var suite_1 = [this.feature.getName(), this.scenario.getName()];
                     var description = "" + step.getKeyword() + step.getName();
-                    var stepId = description + " : " + step.getLine();
+                    var stepId = description + " <- " + this.feature.getUri() + ":" + step.getLine();
                     var result = {
                         id: stepId,
                         description: description,

@@ -30,7 +30,7 @@ module cucumber {
                     let step = stepResult.getStep();
                     const suite = [this.feature.getName(), this.scenario.getName()];
                     const description = `${step.getKeyword()}${step.getName()}`;
-                    const stepId = `${description} : ${step.getLine()}`;
+                    const stepId = `${description} <- ${this.feature.getUri()}:${step.getLine()}`;
                     let result: karma.IKarmaResult = {
                         id: stepId,
                         description: description,
