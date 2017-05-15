@@ -105,7 +105,7 @@ var cucumber;
                             break;
                         case 'ambiguous':
                             var ambiguousStepDefinitions = stepResult.getAmbiguousStepDefinitions()
-                                .map(function (s) { return s.getUri() + " : " + s.getLine(); });
+                                .map(function (s) { return s.getUri() + ":" + s.getLine(); });
                             result.log.push("Step is ambiguous: " + stepId + "\n" + ambiguousStepDefinitions.join('\n'));
                             break;
                         default:

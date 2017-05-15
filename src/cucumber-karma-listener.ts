@@ -57,7 +57,7 @@ module cucumber {
                             break;
                         case 'ambiguous':
                             const ambiguousStepDefinitions = stepResult.getAmbiguousStepDefinitions()
-                                .map(s => `${s.getUri()} : ${s.getLine()}`);
+                                .map(s => `${s.getUri()}:${s.getLine()}`);
                             result.log.push(`Step is ambiguous: ${stepId}\n${ambiguousStepDefinitions.join('\n')}`);
                             break;
                         default:
