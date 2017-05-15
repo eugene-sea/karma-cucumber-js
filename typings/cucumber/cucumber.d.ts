@@ -75,7 +75,11 @@ declare module cucumber {
         World: { new (): any };
         setDefaultTimeout(timeout: number): void;
         Before(callback: Function): void;
+        Before(tag: string, callback: Function): void;
+        Before(options: { tags: string[] }, callback: Function): void;
         After(callback: Function): void;
+        After(tag: string, callback: Function): void;
+        After(options: { tags: string[] }, callback: Function): void;
         Given(regExp: RegExp, callback: Function): void;
         When(regExp: RegExp, callback: Function): void;
         Then(regExp: RegExp, callback: Function): void;
