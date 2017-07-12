@@ -62,7 +62,7 @@ module cucumber {
                             break;
                         default:
                             const error = stepResult.getFailureException();
-                            const errorMessage = typeof error === 'string' ? error : error.stack;
+                            const errorMessage = typeof error === 'string' ? error : (error.message + '\n' + error.stack);
                             result.log.push(`Step: ${stepId}\n${errorMessage}`);
                     }
 

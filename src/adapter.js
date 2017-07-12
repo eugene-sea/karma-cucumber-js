@@ -32,7 +32,7 @@ var cucumber;
                     }
                     else {
                         var error = stepResult.getFailureException();
-                        var errorMessage = typeof error === 'string' ? error : error.stack;
+                        var errorMessage = typeof error === 'string' ? error : (error.message + '\n' + error.stack);
                         result = { status: 'failed', error_message: errorMessage };
                     }
                     this.formatter.match({ uri: step.getUri(), step: { line: step.getLine() } });
@@ -110,7 +110,7 @@ var cucumber;
                             break;
                         default:
                             var error = stepResult.getFailureException();
-                            var errorMessage = typeof error === 'string' ? error : error.stack;
+                            var errorMessage = typeof error === 'string' ? error : (error.message + '\n' + error.stack);
                             result.log.push("Step: " + stepId + "\n" + errorMessage);
                     }
                     this.karma.result(result);
