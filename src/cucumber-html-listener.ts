@@ -38,7 +38,7 @@ module cucumber {
                         result = { status: status };
                     } else {
                         let error = stepResult.getFailureException();
-                        let errorMessage = typeof error === 'string' ? error : (error.message + '\n' + error.stack);
+                        let errorMessage = typeof error === 'string' ? error : `${error.message}\n${error.stack}`;
                         result = { status: 'failed', error_message: errorMessage };
                     }
 
