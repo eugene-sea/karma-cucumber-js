@@ -5,7 +5,7 @@ This adapter does not include Cucumber.js. Cucumber.js and jQuery (required by c
 
 ## Getting Started
 
-``` Shell
+```Shell
 npm install jquery --save-dev
 npm install cucumber --save-dev
 npm install karma-cucumber-js --save-dev
@@ -13,7 +13,7 @@ npm install karma-cucumber-js --save-dev
 
 ### Configuring karma.conf.js
 
-``` JavaScript
+```JavaScript
 ...
 frameworks: ['cucumber-js'],
 ...
@@ -44,7 +44,7 @@ bddJSONReporter: {
 
 In your [step definitions](https://github.com/cucumber/cucumber-js#step-definitions) files write them like this:
 
-``` JavaScript
+```JavaScript
 __adapter__.addStepDefinitions(function (scenario) {
     scenario.Given(/^there is a test step$/, function () { });
     scenario.When(/^it is executed$/, function () { });
@@ -52,6 +52,14 @@ __adapter__.addStepDefinitions(function (scenario) {
     scenario.Then(/^test succeeds$/, function () { });
     scenario.Then(/^test fails$/, function (callback) { callback(new Error('Step failed')); });
 });
+```
+
+## Building Instructions
+
+After getting adapter's code to build the adapter run the following command:
+
+```Shell
+npm run build
 ```
 
 ## License
