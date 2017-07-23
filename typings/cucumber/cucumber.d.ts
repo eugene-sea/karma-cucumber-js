@@ -41,7 +41,7 @@ declare module cucumber {
     export interface IStepResult {
         getStatus(): string;
         getStep(): IFeatureElement;
-        getFailureException(): string | { stack: string; };
+        getFailureException(): string | { stack: string; message: string; };
         getDuration(): number;
         getAmbiguousStepDefinitions(): IStepDefinition[];
     }

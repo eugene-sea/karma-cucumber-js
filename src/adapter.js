@@ -32,7 +32,7 @@ var cucumber;
                     }
                     else {
                         var error = stepResult.getFailureException();
-                        var errorMessage = typeof error === 'string' ? error : error.stack;
+                        var errorMessage = typeof error === 'string' ? error : error.message + "\n" + error.stack;
                         result = { status: 'failed', error_message: errorMessage };
                     }
                     this.formatter.match({ uri: step.getUri(), step: { line: step.getLine() } });
@@ -53,9 +53,6 @@ var cucumber;
     }());
     cucumber.CucumberHTMLListener = CucumberHTMLListener;
 })(cucumber || (cucumber = {}));
-/// <reference path="../typings/karma/karma.d.ts" />
-/// <reference path="../typings/cucumber/cucumber.d.ts" />
-'use strict';
 var cucumber;
 (function (cucumber) {
     var CucumberKarmaListener = (function () {
@@ -110,7 +107,7 @@ var cucumber;
                             break;
                         default:
                             var error = stepResult.getFailureException();
-                            var errorMessage = typeof error === 'string' ? error : error.stack;
+                            var errorMessage = typeof error === 'string' ? error : error.message + "\n" + error.stack;
                             result.log.push("Step: " + stepId + "\n" + errorMessage);
                     }
                     this.karma.result(result);
@@ -122,11 +119,6 @@ var cucumber;
     }());
     cucumber.CucumberKarmaListener = CucumberKarmaListener;
 })(cucumber || (cucumber = {}));
-/// <reference path="../typings/karma/karma.d.ts" />
-/// <reference path="../typings/cucumber/cucumber.d.ts" />
-/// <reference path="./cucumber-html-listener.ts" />
-/// <reference path="./cucumber-karma-listener.ts" />
-'use strict';
 var karma;
 (function (karma_1) {
     var CucumberAdapter = (function () {

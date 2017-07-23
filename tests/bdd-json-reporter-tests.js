@@ -1,5 +1,6 @@
-/// <reference path="../typings/karma/karma.d.ts" />
 "use strict";
+/// <reference path="../typings/karma/karma.d.ts" />
+Object.defineProperty(exports, "__esModule", { value: true });
 require('source-map-support').install();
 var should = require("should");
 var bdd_json_reporter_1 = require("../lib/bdd-json-reporter");
